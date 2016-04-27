@@ -9,7 +9,7 @@ schopen klasifikovat ručně psane číslice 0 - 9. Při řešení budou splněn
 
 - vytvoření trenovacích / testovacích dat pro učení / testovaní systemu
 
-* Každy student napíše alespoň jednu sadu cifer (pro tvorbu cifer použijte dodanou 
+   * Každy student napíše alespoň jednu sadu cifer (pro tvorbu cifer použijte dodanou 
 mřížku). Tyto budou dale oskenovany a převedeny do textoveho modu
 formatu pgm (rastr o velikosti 128 x 128 bodů nakreslenych v 256 odstínech
 šedi). Vytvořena data budou uložena na sdíleny disk, kde bude při ukladaní
@@ -25,13 +25,13 @@ klasifikace bude s učitelem, např. klasifikator s min. vzdaleností)
 
 - funkčnost programu bude nasledující:
 
-* spuštění s parametry: trenovací množina, testovací množina, parametrizační algoritmus,
+   * spuštění s parametry: trenovací množina, testovací množina, parametrizační algoritmus,
 klasifikační algoritmus, nazev modelu
 program natrenuje klasifikator na dane trenovací množině, použije zadany 
 parametrizační/klasifikační algoritmus, zaroveň vyhodnotí uspěšnost klasifikace a
 natrenovany model uloží do souboru pro pozdější použití (např. s GUI).
 
-* spuštění s jedním parametrem = nazev modelu : program se spustí s jednoduchym 
+   * spuštění s jedním parametrem = nazev modelu : program se spustí s jednoduchym 
 GUI a uloženym klasifikačním modelem. Program umožní klasifikovat
 cifry napsane v GUI pomocí myši.
 
