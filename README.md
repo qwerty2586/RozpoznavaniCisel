@@ -11,16 +11,16 @@ schopen klasifikovat ručně psane číslice 0 - 9. Při řešení budou splněn
 
 -- Každy student napíše alespoň jednu sadu cifer (pro tvorbu cifer použijte do-
 danou mřížku). Tyto budou dale oskenovany a převedeny do textoveho modu
-formatu pgm (rastr o velikosti 128 x 128 bodu nakreslenych v 256 odstínech
+formatu pgm (rastr o velikosti 128 x 128 bodů nakreslenych v 256 odstínech
 šedi). Vytvořena data budou uložena na sdíleny disk, kde bude při ukladaní
 dodržena nasledující konvence (osobní číslo = adresař pro data každeho stu-
 denta, v něm založit podadresaře 0 - 9, kde budou uloženy reprezentace jednot-
 livych cifer v uvedenem formatu).
 
-- implementujte alespoň tři ruzne algoritmy (z přednašek i vlastní) pro tvorbu příznaku
+- implementujte alespoň tři různe algoritmy (z přednašek i vlastní) pro tvorbu příznaků
 reprezentující číslice
 
-- implementujte alespoň dva ruzne klasifikační algoritmy (vlastní implementace, kla-
+- implementujte alespoň dva různe klasifikační algoritmy (vlastní implementace, kla-
 sifikace bude s učitelem, např. klasifikator s min. vzdaleností)
 
 - funkčnost programu bude nasledující:
@@ -34,7 +34,7 @@ duchym GUI a uloženym klasifikačním modelem. Program umožní klasifikovat
 cifry napsane v GUI pomocí myši.
 
 - ohodnot'te kvalitu klasifikatoru na vytvořenych datech, použijte metriku přesnost
-(accuracy). Otestujte všechny konfigurace klasifikatoru (tedy celkem 6 vysledku).
+(accuracy). Otestujte všechny konfigurace klasifikatorů (tedy celkem 6 vysledků).
 Bonusove ukoly:
 
 - vyzkoušejte již nějakou hotovou implementaci klasifikatoru (Weka, apod.) a vysledky
