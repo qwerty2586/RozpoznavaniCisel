@@ -37,6 +37,7 @@ public class MainPanel extends JPanel {
 
         Graphics2D g2 =  drawingImage.createGraphics();
         g2.setBackground(Color.white);
+        g2.clearRect(0, 0, WIDTH, HEIGHT);
         g2.dispose();
 
         drawingPanel = new JPanel(true) {
@@ -47,7 +48,7 @@ public class MainPanel extends JPanel {
                     Graphics2D g2 = drawingImage.createGraphics();
 
                     g2.setColor(Color.black);
-                    g2.setStroke(new BasicStroke(3));
+                    g2.setStroke(new BasicStroke(3,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
                     g2.drawLine(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y);
                     lastPoint = newPoint;
 
@@ -97,7 +98,6 @@ public class MainPanel extends JPanel {
 
             @Override
             public void mouseExited(MouseEvent e) {
-                mouseDown = false;
             }
         });
         drawingPanel.addMouseMotionListener(new MouseMotionListener() {
