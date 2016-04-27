@@ -37,7 +37,8 @@ cifry napsane v GUI pomocí myši.
 
 - ohodnot'te kvalitu klasifikatoru na vytvořenych datech, použijte metriku přesnost
 (accuracy). Otestujte všechny konfigurace klasifikatorů (tedy celkem 6 vysledků).
-Bonusove ukoly:
+
+### Bonusove ukoly:
 
 - vyzkoušejte již nějakou hotovou implementaci klasifikatoru (Weka, apod.) a vysledky
 srovnejte s Vaší implementací
