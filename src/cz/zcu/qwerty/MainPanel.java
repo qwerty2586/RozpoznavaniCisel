@@ -2,119 +2,57 @@ package cz.zcu.qwerty;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.image.BufferedImage;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class MainPanel extends JPanel {
 
-    public static final int WIDTH = 200;
-    public static final int HEIGHT = 200;
+    public static final int WIDTH = 400;
+    public static final int HEIGHT = 400;
 
-    static JPanel drawingPanel;
-    boolean mouseDown;
-    Point lastPoint,newPoint;
-    BufferedImage drawingImage = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_INT_ARGB);;
+    private static DrawingPanel drawingPanel;
+
+    private JButton reset_button;
 
 
     public MainPanel() {
         super();
         this.setPreferredSize(new Dimension(WIDTH,HEIGHT));
         //setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setLayout(new BorderLayout());
-        initDrawingPanel();
+        //setLayout(new BorderLayout());
+        setLayout(new FlowLayout(FlowLayout.LEADING));
 
-        this.add(drawingPanel,BorderLayout.PAGE_START);
+
+        initItems();
         this.repaint();
 
 
     }
 
-    private void initDrawingPanel() {
+    private void initItems() {
+        drawingPanel = new DrawingPanel();
+        this.add(drawingPanel);
 
-
-        Graphics2D g2 =  drawingImage.createGraphics();
-        g2.setBackground(Color.white);
-        g2.clearRect(0, 0, WIDTH, HEIGHT);
-        g2.dispose();
-
-        drawingPanel = new JPanel(true) {
+        reset_button = new JButton("RESET");
+        reset_button.addActionListener(new ActionListener() {
             @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                if (mouseDown) {
-                    Graphics2D g2 = drawingImage.createGraphics();
-
-                    g2.setColor(Color.black);
-                    g2.setStroke(new BasicStroke(3,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
-                    g2.drawLine(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y);
-                    lastPoint = newPoint;
-
-                }
-                g.drawImage(drawingImage,0,0,null);
-            }
-
-            @Override
-            public void paint(Graphics g) {
-                super.paint(g);
-
-            }
-        }; // double buffered
-
-        drawingPanel.setPreferredSize(new Dimension(WIDTH,HEIGHT));
-        drawingPanel.setBorder(BorderFactory.createTitledBorder("panel"));
-        drawingPanel.setLayout(new FlowLayout());
-
-
-        mouseDown = false;
-        drawingPanel.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                mouseDown  =true;
-                lastPoint = e.getPoint();
-
-                System.out.print('d');
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                mouseDown = false;
-                newPoint = e.getPoint();
-                drawingPanel.repaint();
-                System.out.print('u');
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
+            public void actionPerformed(ActionEvent e) {
+                resetClick();
             }
         });
-        drawingPanel.addMouseMotionListener(new MouseMotionListener() {
-            @Override
-            public void mouseDragged(MouseEvent e) {
-                newPoint = e.getPoint();
-                drawingPanel.repaint();
-            }
+        this.add(reset_button);
+        
 
-            @Override
-            public void mouseMoved(MouseEvent e) {
 
-            }
-        });
+
+
 
     }
 
+    private void resetClick() {
+        drawingPanel.resetImage();
+    }
 
 
     @Override
