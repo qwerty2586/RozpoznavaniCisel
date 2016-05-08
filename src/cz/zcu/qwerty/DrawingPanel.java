@@ -36,8 +36,6 @@ public class DrawingPanel extends JPanel {
             public void mousePressed(MouseEvent e) {
                 mouseDown  =true;
                 lastPoint = e.getPoint();
-
-                System.out.print('d');
             }
 
             @Override
@@ -45,7 +43,6 @@ public class DrawingPanel extends JPanel {
                 mouseDown = false;
                 newPoint = e.getPoint();
                 repaint();
-                System.out.print('u');
             }
 
             @Override
@@ -93,6 +90,21 @@ public class DrawingPanel extends JPanel {
         g2.clearRect(0, 0, WIDTH, HEIGHT);
         g2.dispose();
         repaint();
+    }
+
+    public int[][] getPixMap() {
+        int [][] pixMap = new int[WIDTH][HEIGHT];
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
+                Color c = new Color(drawingImage.getRGB(i,j));
+                pixMap[i][j]  = (int)(
+                        c.getRed() * 0.299 +
+                        c.getGreen() * 0.587 +
+                        c.getBlue() *0.114);
+                // na sedivou
+            }
+        }
+        return pixMap;
     }
 }
 

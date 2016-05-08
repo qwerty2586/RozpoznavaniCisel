@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 
 public class MainPanel extends JPanel {
@@ -13,7 +14,7 @@ public class MainPanel extends JPanel {
 
     private static DrawingPanel drawingPanel;
 
-    private JButton reset_button;
+    private JButton reset_button, start_button;
 
 
     public MainPanel() {
@@ -42,12 +43,21 @@ public class MainPanel extends JPanel {
             }
         });
         this.add(reset_button);
-        
+        start_button = new JButton("GO");
+        start_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startClick();
+            }
+        });
+        this.add(start_button);
+    }
 
-
-
-
-
+    private void startClick() {
+       // System.out.println("neco");
+        int [][] neco= drawingPanel.getPixMap();
+        System.out.println(Arrays.toString(Vectoring.histogram(neco,127)));
+        System.out.println(Arrays.toString(Vectoring.proportions(neco)));
     }
 
     private void resetClick() {
@@ -58,8 +68,5 @@ public class MainPanel extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
-
-
-
     }
 }
