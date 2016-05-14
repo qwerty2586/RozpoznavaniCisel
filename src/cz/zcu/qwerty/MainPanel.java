@@ -58,6 +58,16 @@ public class MainPanel extends JPanel {
         int [][] neco= drawingPanel.getPixMap();
         System.out.println(Arrays.toString(Vectoring.histogram(neco,127)));
         System.out.println(Arrays.toString(Vectoring.proportions(neco)));
+        System.out.println(Arrays.toString(Preprocessing.centerOfGravity(neco)));
+
+        double mass[] = Preprocessing.centerOfGravity(neco);
+        neco = Preprocessing.shift(neco,(DrawingPanel.WIDTH/2)-(int)mass[0],(DrawingPanel.HEIGHT/2)-(int)mass[1]);
+
+        System.out.println(Arrays.toString(Vectoring.histogram(neco,127)));
+        System.out.println(Arrays.toString(Vectoring.proportions(neco)));
+        System.out.println(Arrays.toString(Preprocessing.centerOfGravity(neco)));
+        drawingPanel.setPixMap(neco);
+
     }
 
     private void resetClick() {

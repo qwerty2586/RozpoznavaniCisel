@@ -12,7 +12,9 @@ public class Main {
         frame.pack();
         frame.setVisible(true);
         frame.setResizable(false);
+        frame.setTitle("Rozpoznavani rucne psanych cisel | Milan Hajzman | qwerty2@students.zcu.cz");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
     }
 
     public static void main(String[] args) {

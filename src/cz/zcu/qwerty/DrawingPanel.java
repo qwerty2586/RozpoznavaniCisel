@@ -8,8 +8,8 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 public class DrawingPanel extends JPanel {
-    private static final int WIDTH = 128;
-    private static final int HEIGHT = 128;
+    public static final int WIDTH = 128;
+    public static final int HEIGHT = 128;
 
     private boolean mouseDown;
     private Point lastPoint,newPoint;
@@ -105,6 +105,15 @@ public class DrawingPanel extends JPanel {
             }
         }
         return pixMap;
+    }
+    public void setPixMap(int [][] pixmap) {
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
+                int c = pixmap[i][j];
+                drawingImage.setRGB(i,j,(new Color(c,c,c)).getRGB());
+            }
+        }
+        repaint();
     }
 }
 
