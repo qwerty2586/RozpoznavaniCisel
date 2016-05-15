@@ -67,6 +67,8 @@ public class MainPanel extends JPanel {
         System.out.println(Arrays.toString(Vectoring.proportions(neco)));
         System.out.println(Arrays.toString(Preprocessing.centerOfGravity(neco)));
         drawingPanel.setPixMap(neco);
+        neco = Preprocessing.loadPPM(Main.class.getResourceAsStream("res/1.ppm"));
+        drawingPanel.setPixMap(neco);
 
     }
 

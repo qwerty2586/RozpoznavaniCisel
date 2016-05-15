@@ -14,6 +14,10 @@
     <envs />
     <RunnerSettings RunnerId="Run" />
     <ConfigurationWrapper RunnerId="Run" />
-    <method />
+    <method>
+      <option name="BuildArtifacts" enabled="true">
+        <artifact name="RozpoznavaniCisel" />
+      </option>
+    </method>
   </configuration>
 </component>
