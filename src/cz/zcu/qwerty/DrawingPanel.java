@@ -76,7 +76,7 @@ public class DrawingPanel extends JPanel {
             Graphics2D g2 = drawingImage.createGraphics();
 
             g2.setColor(Color.black);
-            g2.setStroke(new BasicStroke(3,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
+            g2.setStroke(new BasicStroke(8,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND));
             g2.drawLine(lastPoint.x,lastPoint.y,newPoint.x,newPoint.y);
             lastPoint = newPoint;
 
