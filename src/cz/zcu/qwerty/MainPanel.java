@@ -42,7 +42,7 @@ public class MainPanel extends JPanel {
         reset_button = new JButton("RESET");
         reset_button.addActionListener(e -> resetClick());
         this.add(reset_button);
-        start_button = new JButton("GO");
+        start_button = new JButton("START");
         start_button.addActionListener(e -> startClick());
         this.add(start_button);
 
@@ -56,8 +56,8 @@ public class MainPanel extends JPanel {
         ButtonGroup group = new ButtonGroup();
         panel.setLayout(new BoxLayout(panel,BoxLayout.PAGE_AXIS));
         vector_button[0] = new JRadioButton("histogram");
-        vector_button[1] = new JRadioButton("proportions");
-        vector_button[2] = new JRadioButton("kexik");
+        vector_button[1] = new JRadioButton("proporce");
+        vector_button[2] = new JRadioButton("průsečíky");
         group.add(vector_button[0]);
         group.add(vector_button[1]);
         group.add(vector_button[2]);

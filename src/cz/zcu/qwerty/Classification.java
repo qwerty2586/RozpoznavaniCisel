@@ -57,7 +57,7 @@ public class Classification {
                 biggest = chances[i];
             }
         }
-       // System.out.println(Arrays.toString(chances));
+        // System.out.println(Arrays.toString(chances));
         return bigget_index;
         
     }

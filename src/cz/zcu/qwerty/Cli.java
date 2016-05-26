@@ -34,6 +34,8 @@ public class Cli {
             case Vectoring.KEXIK: etalons = model.kexikEtalons; break;
         }
 
+        int ok = 0;
+        int all = 0;
 
         try {
             if (testing_directory.charAt(testing_directory.length() - 1) != '/')
@@ -64,7 +66,14 @@ public class Cli {
                         else result = Classification.naive_bayes(Classification.divide(sample),Classification.divide(etalons),model.resultMap);
                     }
 
-                    System.out.println("Vzorek: "+files[j].getPath()+" klasifikován jako: "+result);
+                    System.out.print("Vzorek: "+files[j].getPath()+" klasifikován jako: "+result+" ");
+                    if (result==i ) {
+                        System.out.println("OK");
+                        ok++;
+                    } else {
+                        System.out.println();
+                    }
+                    all++;
 
 
                 }
@@ -72,6 +81,12 @@ public class Cli {
         } catch (IOException e) {
             System.out.println("Chyba při čtení souboru");
         }
+
+        if (all>0) {
+            double acc = (double)ok/(double)all;
+            System.out.println("Přesnost: "+String.format("%.4f",acc)+ " = "+String.format("%.2f",acc*100.0)+"% ");
+        }
+
 
 
 

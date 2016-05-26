@@ -34,7 +34,7 @@ public class Main {
         System.out.println("Vektorovací algoritmy: ");
         System.out.println(" 0 - Histogram");
         System.out.println(" 1 - Proporce");
-        System.out.println(" 2 - Kexik");
+        System.out.println(" 2 - Průsečíky");
         System.out.println();
         System.out.println("Klasifikační algoritmy: ");
         System.out.println(" 0 - Klasifikátor s nejmenší vzdáleností");
