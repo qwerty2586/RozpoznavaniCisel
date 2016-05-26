@@ -5,6 +5,7 @@ public class Vectoring {
 
     static int DEFAULT_HISTOGRAM_TRESHOLD =128;
     static int PROPORTIONS_TRESHOLD =200;
+    public static final int COUNT = 3;
 
     public static int[] histogram(int[][] bitmap) {
         return histogram(bitmap, DEFAULT_HISTOGRAM_TRESHOLD);
@@ -32,7 +33,7 @@ public class Vectoring {
         return r;
     }
 
-    static int RESOLUTION =15;
+    static int RESOLUTION =30;
 
     public static int[] proportions(int[][]bitmap) {
         int cols = bitmap[0].length;
@@ -122,7 +123,8 @@ public class Vectoring {
             boolean lastBlack = false; //jakoze prvni je bila
 
             for (int j = minx; j <= maxx+1; j++) {
-                boolean actualBlack = isBlack(bitmap[j][row]);
+                boolean actualBlack = false;
+                if (j<128) actualBlack = isBlack(bitmap[j][row]);
                 if (!lastBlack&&actualBlack) {start = j;}
                 if (lastBlack&&!actualBlack) {
                     end = j;
@@ -136,7 +138,7 @@ public class Vectoring {
                 lastBlack = actualBlack;
             }
             r[i*2] = shortBlack;
-            r[(i*2)+1] = longBlack;
+            r[(i*2)+1] = longBlack*10;
 
         }
 
@@ -150,7 +152,8 @@ public class Vectoring {
             boolean lastBlack = false; //jakoze prvni je bila
 
             for (int j = miny; j <= maxy+1; j++) {
-                boolean actualBlack = isBlack(bitmap[col][j]);
+                boolean actualBlack = false;
+                if (j<128) actualBlack = isBlack(bitmap[col][j]);
                 if (!lastBlack&&actualBlack) {start = j;}
                 if (lastBlack&&!actualBlack) {
                     end = j;
@@ -164,7 +167,7 @@ public class Vectoring {
                 lastBlack = actualBlack;
             }
             r[RESOLUTION+RESOLUTION+i*2] = shortBlack;
-            r[RESOLUTION+RESOLUTION+(i*2)+1] = longBlack;
+            r[RESOLUTION+RESOLUTION+(i*2)+1] = longBlack*10;
 
         }
 

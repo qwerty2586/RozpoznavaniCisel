@@ -52,6 +52,7 @@ public class Preprocessing {
         if (type_str.compareTo("P2")==0) type=2;
         else if (type_str.compareTo("P3")==0) type=3;
         else return null;
+        while (!sc.hasNextInt()) sc.nextLine();
         int w = sc.nextInt();
         int h = sc.nextInt();
         int[][] bitmap = new int[w][h];

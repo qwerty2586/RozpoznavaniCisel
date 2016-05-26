@@ -16,8 +16,32 @@ public class Main {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     }
+    public static final String PROGRAM_NAME = "A13B0303P.jar";
+
+    public static void showHelp() {
+        System.out.println("Spatne argumenty");
+        System.out.println("GUI: java -jar "+PROGRAM_NAME+" model_file");
+        System.out.println("Spatne argumenty");
+    }
 
     public static void main(String[] args) {
-        showGui();
+        switch (args.length) {
+            case 0: showGui(); break;
+            case 5: {
+                int v = Integer.valueOf(args[2])-1;
+                int c = Integer.valueOf(args[3])-1;
+                if (c<0||v<0||c>=Classification.COUNT||v>=Vectoring.COUNT) {
+                    showHelp();
+                } else {
+                    Cli.run(args[0],args[1],v,c,args[4]);
+                }
+
+
+
+            } break;
+            default:  showHelp();
+
+        }
+
     }
 }
