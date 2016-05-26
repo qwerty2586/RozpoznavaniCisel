@@ -4,6 +4,9 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Preprocessing {
+    /**
+     * Vrátí těžiště obrázku
+     */
     public static double[] centerOfGravity(int[][]bitmap) {
         double[] r = new double[2];
         r[0] = 0.0; //x
@@ -23,6 +26,10 @@ public class Preprocessing {
         r[1] /= sum;
         return r;
     }
+
+    /**
+     * Posun obrázku
+     */
     public static int[][] shift(int[][] bitmap,int shiftx,int shifty) {
         int cols = bitmap[0].length;
         int rows = bitmap.length;
@@ -38,6 +45,9 @@ public class Preprocessing {
 
     }
 
+    /**
+     * načte obrázek ze souboru
+     */
     public static int[][] loadPPM(File file) {
         try {
             return loadPPM(new FileInputStream(file));

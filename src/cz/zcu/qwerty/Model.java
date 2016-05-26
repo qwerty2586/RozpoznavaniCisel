@@ -18,6 +18,9 @@ public class Model
         kexikEtalons = new int[etalons_count][];
     }
 
+    /**
+     * Vytvoří model s etalovy z adresáře
+     */
     public static Model makeModel(String directory) throws IOException {
         int total_length = 0;
         if (directory.charAt(directory.length()-1)!='/') directory+='/';
@@ -58,6 +61,9 @@ public class Model
         return model;
     }
 
+    /**
+     * Uložení modelu do souboru
+     */
     public static void save(Model model, String filename) throws IOException {
         FileWriter fw = new FileWriter(filename);
         int etalons_count = model.resultMap.length;
@@ -100,6 +106,9 @@ public class Model
 
     }
 
+    /**
+     * Načtení modelu ze souboru
+     */
     public static Model load(String filename) throws IOException {
         Scanner sc =  new Scanner(new FileReader(filename));
         int etalons_count = sc.nextInt();
