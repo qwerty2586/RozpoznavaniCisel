@@ -3,9 +3,6 @@ package cz.zcu.qwerty;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 
 
 public class MainPanel extends JPanel {
@@ -22,26 +19,18 @@ public class MainPanel extends JPanel {
 
     private JLabel result_label;
 
-    int[][] proportionsEtalons; // = new int[10][];
-    int[][] histogramEtalons;   // = new int[10][];
-    int[][] kexikEtalons;       // = new int[10][];
-
-    int[] resultMap;
-    String[] filenames;
+    Model model;
 
 
-    public MainPanel() {
+    public MainPanel(Model model) {
         super();
         this.setPreferredSize(new Dimension(WIDTH,HEIGHT));
-        //setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        //setLayout(new BorderLayout());
         setLayout(new FlowLayout(FlowLayout.LEADING));
 
+        this.model = model;
 
         initItems();
         this.repaint();
-
-
     }
 
     private void initItems() {
@@ -60,14 +49,6 @@ public class MainPanel extends JPanel {
         result_label = new JLabel("");
         this.add(result_label);
 
-        try {
-            makeEtalons("A13B0303P");
-        } catch (IOException e) {
-            System.out.println("Nepodarilo se nacist trenovaci data...");
-            start_button.setEnabled(false);
-            reset_button.setEnabled(false);
-
-        }
     }
 
     private void initRadioButtons() {
@@ -106,62 +87,6 @@ public class MainPanel extends JPanel {
 
     }
 
-    private void makeEtalons(String directory) throws IOException {
-
-        int total_length = 0;
-        if (directory.charAt(directory.length()-1)!='/') directory+='/';
-        File f;
-        for (int i = 0; i < 10; i++) {
-            f = new File(directory+i);
-            if (f.isDirectory()) {
-                total_length += f.listFiles().length;
-            } else {
-                throw new IOException();
-            }
-        }
-
-        resultMap = new int[total_length];
-
-        histogramEtalons = new int[total_length][];
-        proportionsEtalons = new int[total_length][];
-        kexikEtalons = new int[total_length][];
-
-        filenames = new String[total_length];
-
-        int it = 0;
-
-        for (int i = 0; i < 10; i++) {
-            f = new File(directory+i);
-            File[] files = f.listFiles();
-            for (int j = 0; j < files.length; j++) { // tady uz pochazime soubory
-                FileInputStream is = new FileInputStream(files[j]);
-                int [][] pom = Preprocessing.loadPPM(is);
-                double center[] = Preprocessing.centerOfGravity(pom);
-                pom = Preprocessing.shift(pom,(DrawingPanel.WIDTH/2)-(int)center[0],(DrawingPanel.HEIGHT/2)-(int)center[1]);
-
-                proportionsEtalons[it] = Vectoring.proportions(pom);
-                histogramEtalons[it] = Vectoring.histogram(pom);
-                kexikEtalons[it] = Vectoring.kexik(pom);
-                resultMap[it] = i;
-                filenames[it] = files[j].getPath();
-                it++;
-
-                is.close();
-            }
-
-        }
-
-
-
-
-
-
-
-
-
-    }
-
-
     private void startClick() {
 
         int [][] input= drawingPanel.getPixMap();
@@ -179,25 +104,21 @@ public class MainPanel extends JPanel {
 
         if (vector_button[0].isSelected()) {
             sample = Vectoring.histogram(input);
-            etalons = histogramEtalons;
+            etalons = model.histogramEtalons;
         } else if (vector_button[1].isSelected()) {
             sample = Vectoring.proportions(input);
-            etalons = proportionsEtalons;
+            etalons = model.proportionsEtalons;
         } else  {
             sample = Vectoring.kexik(input);
-            etalons = kexikEtalons;
+            etalons = model.kexikEtalons;
         }
         if (classifier_button[0].isSelected()) {
             int lowest = Classification.lowestDistance(Classification.MANHATTAN, sample, etalons);
-/*
-        input = Preprocessing.loadPPM(Main.class.getResourceAsStream("res/"+lowest+".ppm"));
-        drawingPanel.setPixMap(input);
-*/
-            result_label.setText("nejblizsi odhad, etalon: " + filenames[lowest] + " cislice: " + resultMap[lowest]);
+            result_label.setText("nejblizsi odhad, etalon: " + lowest + " cislice: " + model.resultMap[lowest]);
         } else {
             int biggest;
-            if (vector_button[2].isSelected()) biggest = Classification.naive_bayes(sample, etalons,resultMap);
-            else biggest = Classification.naive_bayes(Classification.divide(sample), Classification.divide(etalons),resultMap);
+            if (vector_button[2].isSelected()) biggest = Classification.naive_bayes(sample, etalons,model.resultMap);
+            else biggest = Classification.naive_bayes(Classification.divide(sample), Classification.divide(etalons),model.resultMap);
             result_label.setText("nejblizsi odhad cislice: " + biggest);
         }
     }

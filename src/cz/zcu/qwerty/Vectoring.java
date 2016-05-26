@@ -3,6 +3,10 @@ package cz.zcu.qwerty;
 
 public class Vectoring {
 
+    public static final int HISTOGRAM = 0;
+    public static final int PROPORTIONS = 1;
+    public static final int KEXIK = 2;
+
     static int DEFAULT_HISTOGRAM_TRESHOLD =128;
     static int PROPORTIONS_TRESHOLD =200;
     public static final int COUNT = 3;
@@ -153,7 +157,7 @@ public class Vectoring {
 
             for (int j = miny; j <= maxy+1; j++) {
                 boolean actualBlack = false;
-                if (j<128) actualBlack = isBlack(bitmap[col][j]);
+                if (j<128) actualBlack = isBlack(bitmap[col][j]); // pokud jsme mimo rozsah tak osetrime bilou
                 if (!lastBlack&&actualBlack) {start = j;}
                 if (lastBlack&&!actualBlack) {
                     end = j;

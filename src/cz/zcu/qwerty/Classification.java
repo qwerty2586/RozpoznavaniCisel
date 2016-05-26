@@ -1,11 +1,13 @@
 package cz.zcu.qwerty;
 
 
-import java.util.Arrays;
-
 public class Classification {
+    public static final int LOWEST_DISTANCE = 0;
+    public static final int NAIVE_BAYES = 1;
+
     public static final int MANHATTAN = 0;
     public static final int COUNT = 2;
+
 
     public static int lowestDistance(int type, int[] sample, int[][] etalons) {
         long sum;
@@ -16,7 +18,7 @@ public class Classification {
             for (int u = 0; u < sample.length; u++) {
                 sum += Math.abs(etalons[i][u] - sample[u]);
             }
-            System.out.println("sum "+i+" "+sum);
+      //      System.out.println("sum "+i+" "+sum);
 
             if (sum<lowest_sum) {
                 lowest = i;
@@ -55,7 +57,7 @@ public class Classification {
                 biggest = chances[i];
             }
         }
-        System.out.println(Arrays.toString(chances));
+       // System.out.println(Arrays.toString(chances));
         return bigget_index;
         
     }
